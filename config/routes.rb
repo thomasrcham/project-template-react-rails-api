@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
   get "/volunteer/:id", to: "volunteers#user"
   post "/create/", to: "users#create_both"
+  patch "/update/:id", to: "volunteers#update"
 
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
