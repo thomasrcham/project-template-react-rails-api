@@ -2,9 +2,14 @@ import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
 
-function UserCard({ user, handleLogoutClick }) {
+function UserCard({
+  displayUser,
+  setDisplayUser,
+  user,
+  handleLogoutClick,
+  setNeedsUpdate,
+}) {
   const navigate = useNavigate();
-  const [displayUser, setDisplayUser] = useState(null);
   const [activeSignups, setActiveSignups] = useState(null);
 
   console.log(displayUser);
@@ -61,6 +66,12 @@ function UserCard({ user, handleLogoutClick }) {
           </p>
           <p className="user-text">Age: {displayUser.age}</p>
           <p className="user-text">Email: {displayUser.email}</p>
+          <button
+            onClick={() => setNeedsUpdate(1)}
+            className="update-form-button"
+          >
+            Update Info
+          </button>
           <button onClick={() => handleLogoutClick()}>Logout</button>
         </div>
         <div className="col-sm-7 home-text">

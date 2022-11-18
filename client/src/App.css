@@ -271,6 +271,28 @@ padding:40px
   font-size: calc(10px + 1.2vmin);
 }
 
+.update-form-row {
+  display:flex;
+  justify-content: flex-end;
+  margin-bottom:5px;
+  vertical-align: baseline;
+  line-height: normal;
+  
+}
+
+.update-form-label {
+  vertical-align: bottom
+}
+
+.update-form-box {
+  margin-left: 5px;
+}
+
+.update-form-button {
+  width:100%;
+  margin-bottom:5px
+}
+
 .testing-text {
   margin: 0
 }
