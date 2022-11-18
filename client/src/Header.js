@@ -31,10 +31,7 @@ function Header() {
             className="btn btn-header"
             onClick={() => navigate("/volunteers/")}
           >
-            Our Team
-          </button>
-          <button type="button" className="btn btn-header">
-            Sign Up Now!
+            Sign Up Now
           </button>
         </div>
 

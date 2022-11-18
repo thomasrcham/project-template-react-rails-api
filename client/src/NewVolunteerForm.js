@@ -1,102 +1,87 @@
 import React, { useState } from 'react';
 import { Form } from 'semantic-ui-react'
 
-function NewVolunteerForm({ handleAddVolunteer }) {
-  const [formData, setFormData] = useState({
-    name: "",
-    age: "",
-    email: "", 
-    username: "", 
-    password: "",
-    password_confirmation: ""
-  })
+function NewVolunteerForm() {
+  const [name, setName] = useState("");
+  const [age, setAge] = useState(0);
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
-  function handleChange(event) {
-    setFormData({
-      ...formData,
-      [event.target.name]: event.target.value
-    })
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-
-    // const newVolunteer = {
-    //   name: formData.name,
-    //   age: formData.age,
-    //   email: formData.email, 
-    //   password: formData.password,
-    //   password_confirmation: formData.password_confirmation
-    // }
-
-    const fakeVolunteer = {
-      name: "bubba",
-      age: "age",
-      email: "email", 
-      password: "pw",
-      password_confirmation: "pw"
-    }
-
-
-    fetch("/volunteers", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(fakeVolunteer),
-    })
-      .then((response) => response.json())
-      .then(data => {
-        handleAddVolunteer(data)
+  function handleSubmit(e) {
+    e.preventDefault();
+    const itemData = {
+      name: name,
+      age: age,
+      email: email,
+      username: username,
+      password: password,
+    };
+    if (password === passwordConfirmation) {
+      fetch("/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(itemData),
       })
+        .then((r) => r.json())
+        .then((newItem) => console.log(newItem));
+    } else {
+      setUsername("");
+      setPassword("");
+      setPasswordConfirmation("");
+      alert("DARBY Y SEO Y JAFET SEZ: Yo your PASSWORD don't match DAWG");
+    }
   }
 
   return (
     <div>
-      <strong className="form-title">Sign Up to be a Volunteer!</strong>
+      <strong className="form-title">Sign Up to be a Volunteer</strong>
       <Form className="form" onSubmit={handleSubmit}>
         <Form.Group widths="equal">
           <Form.Input
             fluid label="Volunteer Name"
             placeholder="Name"
             name="name"
-            value={formData.name}
-            onChange={handleChange}
+            value={name}
+            onChange={setName}
           />
           <Form.Input
             fluid label="Age"
             placeholder="Age"
             name="age"
-            value={formData.age}
-            onChange={handleChange}
+            value={age}
+            onChange={setAge}
           />
           <Form.Input
             fluid label="Email"
             placeholder="Email"
             name="email"
-            value={formData.email}
-            onChange={handleChange}
+            value={email}
+            onChange={setEmail}
           />
             <Form.Input
             fluid label="Username"
             placeholder="Username"
             name="username"
-            value={formData.username}
-            onChange={handleChange}
+            value={username}
+            onChange={setUsername}
           />
             <Form.Input
             fluid label="Password"
             placeholder="Password"
             name="password"
-            value={formData.password}
-            onChange={handleChange}
+            value={password}
+            onChange={setPassword}
           />
             <Form.Input
             fluid label="Password Confirmation"
             placeholder="Password Confirmation"
-            name="password_confirmation"
-            value={formData.password_confirmation}
-            onChange={handleChange}
+            name="passwordConfirmation"
+            value={passwordConfirmation}
+            onChange={setPasswordConfirmation}
           />
           
         </Form.Group>
