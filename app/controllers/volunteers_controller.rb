@@ -8,6 +8,13 @@ class VolunteersController < ApplicationController
     render json: volunteer, status: :ok
   end
 
+  def user
+    volunteer = Volunteer.find_by(user_id: params[:id])
+    render json: volunteer,
+           serializer: VolunteerWithActivitiesSerializer,
+           status: :ok
+  end
+
   # def create
   #   volunteer = Volunteer.create!(name: params[:name], age: params[:age], email: params[:email], user_id: User.create!(user_params).id)
   #   render json: volunteer, status: :created

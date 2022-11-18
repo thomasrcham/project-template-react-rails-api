@@ -9,12 +9,12 @@ function OurTeam() {
   useEffect(() => {
     fetch("/volunteers")
       .then((resp) => resp.json())
-      .then((volunteers) => setVolunteers(volunteers));
+      .then((data) => setVolunteers(data));
   }, []);
 
 
-  function handleAddVolunteer(newItem) {
-    console.log("work", newItem);
+  function handleAddVolunteer(newVolunteer) {
+    console.log("work", newVolunteer);
   }
 
   return (
