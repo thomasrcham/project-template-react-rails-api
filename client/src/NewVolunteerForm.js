@@ -46,42 +46,50 @@ function NewVolunteerForm() {
             placeholder="Name"
             name="name"
             value={name}
-            onChange={setName}
+            onChange={(e) => setName(e.target.value)
+            }
           />
           <Form.Input
             fluid label="Age"
             placeholder="Age"
             name="age"
             value={age}
-            onChange={setAge}
+            onChange={(e) => setAge(e.target.value)
+            }
           />
           <Form.Input
             fluid label="Email"
             placeholder="Email"
             name="email"
             value={email}
-            onChange={setEmail}
+            onChange={(e) => setEmail(e.target.value)
+            }
           />
             <Form.Input
             fluid label="Username"
             placeholder="Username"
             name="username"
             value={username}
-            onChange={setUsername}
+            onChange={(e) => setUsername(e.target.value)
+            }
           />
             <Form.Input
             fluid label="Password"
             placeholder="Password"
+            type="password"
             name="password"
             value={password}
-            onChange={setPassword}
+            onChange={(e) => setPassword(e.target.value)
+            }
           />
             <Form.Input
             fluid label="Password Confirmation"
             placeholder="Password Confirmation"
+            type="password"
             name="passwordConfirmation"
             value={passwordConfirmation}
-            onChange={setPasswordConfirmation}
+            onChange={(e) => setPasswordConfirmation(e.target.value)
+            }
           />
           
         </Form.Group>
