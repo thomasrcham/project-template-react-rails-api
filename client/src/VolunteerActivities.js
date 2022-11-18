@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import NewActivity from "./NewActivity.js";
+
 
 function VolunteerActivities({ user }) {
   const navigate = useNavigate();
@@ -34,44 +36,35 @@ function VolunteerActivities({ user }) {
       .then(navigate(`/user/`));
   }
 
+  function handleNewActivity( data ) {
+    let newActivityArray = [data, ...activities]
+    setActivities(newActivityArray)
+    }
+   
+
   let activityDisplay = activities
     ? activities.map((activity) => (
-        <div className="card activity-card">
-          <img className="card-img-top" src={activity.image} alt="Card cap" />
-          <div className="card-body">
-            <h5 className="card-title">{activity.organization}</h5>
-            <p className="card-text">
-              {activity.activity_name}: {activity.activity_description}
-            </p>
-            <div className="card-footer">
-              <button
-                href="#"
-                value={activity.id}
-                className="btn btn-header btn-footer"
-                onClick={(a) => handleSignup(a)}
-              >
-                Sign Up Now!
-              </button>
-            </div>
+      <div className="card activity-card">
+        <img className="card-img-top" src={activity.image} alt="Card cap" />
+        <div className="card-body">
+          <h5 className="card-title">{activity.organization}</h5>
+          <p className="card-text">
+            {activity.activity_name}: {activity.activity_description}
+          </p>
+          <div className="card-footer">
+            <button
+              href="#"
+              value={activity.id}
+              className="btn btn-header btn-footer"
+              onClick={(a) => handleSignup(a)}
+            >
+              Sign Up Now!
+            </button>
           </div>
         </div>
-      ))
+      </div>
+    ))
     : null;
-
-  let newActivityForm = (
-    <form className="login-form">
-      <div>
-        <label htmlFor="organization">Organization: </label>
-
-        <input type="text" id="organization" />
-      </div>
-      <label htmlFor="description">Description:</label>
-      <input type="text" id="description" />
-      <div>
-        <button type="submit">Login</button>
-      </div>
-    </form>
-  );
 
   return (
     <>
@@ -82,7 +75,7 @@ function VolunteerActivities({ user }) {
           alt="page top"
         />
         <h3 className="page-title-text volunteer-title-text">
-          Volunteer Activities
+        Volunteer Activities
         </h3>
       </div>
 
@@ -92,9 +85,9 @@ function VolunteerActivities({ user }) {
         <br />
         Tell us here!
       </div>
-      <div className="new-activity-form">{newActivityForm}</div>
+      <div className="new-activity-form"><NewActivity handleNewActivity={handleNewActivity}/>
+</div>
     </>
   );
 }
-
 export default VolunteerActivities;
